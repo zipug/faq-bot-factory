@@ -1,3 +1,6 @@
 [submodule "frontend"]
 	path = frontend
 	url = git@github.com:zipug/frontend.git
+[submodule "dashboard-service"]
+	path = dashboard-service
+	url = git@github.com:zipug/dashboard-service.git
