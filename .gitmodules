@@ -4,3 +4,6 @@
 [submodule "dashboard-service"]
 	path = dashboard-service
 	url = git@github.com:zipug/dashboard-service.git
+[submodule "mail-service"]
+	path = mail-service
+	url = git@github.com:zipug/mail-service.git
