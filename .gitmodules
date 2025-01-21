@@ -7,3 +7,6 @@
 [submodule "mail-service"]
 	path = mail-service
 	url = git@github.com:zipug/mail-service.git
+[submodule "search-service"]
+	path = search-service
+	url = git@github.com:zipug/search-service.git
