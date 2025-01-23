@@ -1,24 +1,22 @@
-name: "faq-factory-filebeat"
-logging.metrics.enabled: false
-xpack.security.enabled: false
-xpack.monitoring.enabled: false
-setup.ilm.enabled: false
-setup.template.enabled: false
+filebeat.autodiscover:
+  providers:
+  - type: docker
+    hints.enabled: true
+    hints.default_config.enabled: false
 
-filebeat.inputs:
-  - type: log
-    scan_frequency: 1s
-    enabled: true
-    paths:
-      - /logs/*.log
-    fields:
-      - service: dashboard-service
-    fields_under_root: true
-    json:
-      keys_under_root: true
-      overwrite_keys: true
-      message_key: 'message'
+processors:
+- add_docker_metadata:
+    host: "unix:///var/run/docker.sock"
+
+- decode_json_fields:
+    fields: ["message"]
+    target: "json"
+    overwrite_keys: true
 
 output.elasticsearch:
   hosts: ["elasticsearch:9200"]
-  index: "dashboard-service"
+  indices:
+    - index: "filebeat-%{[agent.version]}-%{+yyyy.MM.dd}"
+
+logging.json: true
+logging.metrics.enabled: false
