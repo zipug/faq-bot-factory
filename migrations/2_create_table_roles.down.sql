@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS abilities;
+DROP TABLE IF EXISTS roles;

@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS roles 
+(
+  id BIGINT GENERATED ALWAYS AS IDENTITY,
+  type VARCHAR(255) NOT NULL,
+  CONSTRAINT roles_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS abilities
+(
+  id BIGINT GENERATED ALWAYS AS IDENTITY,
+  role_id BIGINT DEFAULT NULL,
+  description TEXT,
+  CONSTRAINT abilities_pkey PRIMARY KEY (id),
+  CONSTRAINT abilities_role_id_fkey FOREIGN KEY (role_id)
+    REFERENCES roles (id) 
+);
