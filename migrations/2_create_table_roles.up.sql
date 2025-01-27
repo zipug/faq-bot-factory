@@ -1,16 +1,19 @@
 CREATE TABLE IF NOT EXISTS roles 
 (
   id BIGINT GENERATED ALWAYS AS IDENTITY,
-  type VARCHAR(255) NOT NULL,
-  CONSTRAINT roles_pkey PRIMARY KEY (id)
+  name VARCHAR(50) NOT NULL,
+  description TEXT DEFAULT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  deleted_at TIMESTAMP DEFAULT NULL,
+  CONSTRAINT roles_pkey PRIMARY KEY (id),
+  CONSTRAINT roles_name_unique UNIQUE (name)
 );
 
-CREATE TABLE IF NOT EXISTS abilities
-(
-  id BIGINT GENERATED ALWAYS AS IDENTITY,
-  role_id BIGINT DEFAULT NULL,
-  description TEXT,
-  CONSTRAINT abilities_pkey PRIMARY KEY (id),
-  CONSTRAINT abilities_role_id_fkey FOREIGN KEY (role_id)
-    REFERENCES roles (id) 
-);
+CREATE OR REPLACE RULE delete_roles_rule AS
+    ON DELETE TO roles
+    DO INSTEAD (
+        UPDATE roles
+        SET deleted_at = now()
+        WHERE id = OLD.id
+    );
