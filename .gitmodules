@@ -10,3 +10,9 @@
 [submodule "search-service"]
 	path = search-service
 	url = git@github.com:zipug/search-service.git
+[submodule "docker-exec-service"]
+	path = docker-exec-service
+	url = git@github.com:zipug/docker-exec-service.git
+[submodule "report-service"]
+	path = report-service
+	url = git@github.com:zipug/report-service.git

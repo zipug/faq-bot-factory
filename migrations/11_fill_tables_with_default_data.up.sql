@@ -9,10 +9,10 @@ VALUES ('admin', 'Administrator with full features'),
 ('support', 'Support with support features');
 
 INSERT INTO permissions (name, description)
-VALUES ('bot_feature', 'Вкладка с ботами'),
+VALUES ('bots_feature', 'Вкладка с ботами'),
 ('roles_feature', 'Вкладка с ролями'),
 ('permissions_feature', 'Вкладка с возможностями'),
-('project_feature', 'Вкладка с проектами'),
+('projects_feature', 'Вкладка с проектами'),
 ('users_feature', 'Вкладка с пользователя'),
 ('articles_feature', 'Вкладка со статьями'),
 ('reports_feature', 'Вкладка с отчётами'),
