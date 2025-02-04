@@ -5,8 +5,8 @@ VALUES ('verified', 'Admin', 'Admin', 'admin@admin.com', '$2a$10$Eimi6mYCXTVvxgb
 
 INSERT INTO roles (name, description)
 VALUES ('admin', 'Administrator with full features'),
-('user', 'User with basic features'),
-('support', 'Support with support features');
+('support', 'Support with support features'),
+('user', 'User with basic features');
 
 INSERT INTO permissions (name, description)
 VALUES ('bots_feature', 'Вкладка с ботами'),
@@ -27,21 +27,21 @@ VALUES (1, 1, true, true, true, true),
 (1, 6, true, true, true, true),
 (1, 7, true, true, true, true),
 (1, 8, true, true, true, true),
-(2, 1, true, true, true, true),
-(2, 2, false, false, false, false),
-(2, 3, false, false, false, false),
-(2, 4, true, true, true, true),
-(2, 5, false, false, false, false),
-(2, 6, true, true, true, true),
-(2, 7, true, true, true, true),
-(2, 8, true, true, true, true),
-(3, 1, false, true, false, false),
+(2, 1, false, true, false, false),
+(2, 2, false, true, false, false),
+(2, 3, false, true, false, false),
+(2, 4, false, true, false, false),
+(2, 5, false, true, false, false),
+(2, 6, false, true, false, false),
+(2, 7, false, true, true, false),
+(2, 8, false, true, false, false),
+(3, 1, true, true, true, true),
 (3, 2, false, true, false, false),
 (3, 3, false, false, false, false),
 (3, 4, true, true, true, true),
-(3, 5, false, true, false, false),
+(3, 5, false, false, false, false),
 (3, 6, true, true, true, true),
-(3, 7, false, true, true, false),
+(3, 7, true, true, true, true),
 (3, 8, true, true, true, true);
 
 INSERT INTO user_roles (role_id, user_id)
