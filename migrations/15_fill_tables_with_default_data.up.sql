@@ -124,6 +124,10 @@ VALUES ('Test article', 'Test article description', '<html>
 </html>', 1),
 ('Big Black bear', 'Black medved article', 'Black medved article content', 2);
 
+INSERT INTO bots (project_id, name, description, state, user_id)
+VALUES (1, 'Test project bot', 'Test project description', 'created', 3),
+(2, 'Big Black bear', 'Black medved project', 'created', 3);
+
 INSERT INTO reports (name, description, icon)
 VALUES ('Общая статистика', 'Количество пользователей, заданные пользователями вопросы и их распределение по проектам', ''),
        ('Нерешённые вопросы', 'Статистика по нерешённым вопросам', '');

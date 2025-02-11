@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS bots 
 (
   id BIGINT GENERATED ALWAYS AS IDENTITY,
+  project_id BIGINT NOT NULL,
   name VARCHAR(50) NOT NULL,
   description TEXT DEFAULT NULL,
   icon VARCHAR(50) DEFAULT NULL,
@@ -11,7 +12,8 @@ CREATE TABLE IF NOT EXISTS bots
   deleted_at TIMESTAMP DEFAULT NULL,
   CONSTRAINT bots_pkey PRIMARY KEY (id),
   CONSTRAINT bots_state_check CHECK (state IN ('created', 'running', 'stopped', 'deleted')),
-  CONSTRAINT bots_name_unique UNIQUE (name)
+  CONSTRAINT bots_project_id_fkey FOREIGN KEY (project_id)
+    REFERENCES projects (id) ON DELETE CASCADE
 );
 
 CREATE OR REPLACE RULE delete_bots_rule AS
