@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS attachments
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   deleted_at TIMESTAMP DEFAULT NULL,
   CONSTRAINT attachments_pkey PRIMARY KEY (id),
-  CONSTRAINT attachments_name_unique UNIQUE (name)
+  CONSTRAINT attachments_object_id_unique UNIQUE (object_id)
 );
 
 CREATE OR REPLACE RULE delete_attachments_rule AS

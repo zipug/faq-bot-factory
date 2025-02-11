@@ -5,11 +5,12 @@ CREATE TABLE IF NOT EXISTS bots
   description TEXT DEFAULT NULL,
   icon VARCHAR(50) DEFAULT NULL,
   state TEXT NOT NULL,
+  user_id BIGINT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   deleted_at TIMESTAMP DEFAULT NULL,
   CONSTRAINT bots_pkey PRIMARY KEY (id),
-  CONSTRAINT bots_state_check CHECK (state IN ('created', 'running', 'stoped', 'deleted')),
+  CONSTRAINT bots_state_check CHECK (state IN ('created', 'running', 'stopped', 'deleted')),
   CONSTRAINT bots_name_unique UNIQUE (name)
 );
 
