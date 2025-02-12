@@ -13,7 +13,9 @@ CREATE TABLE IF NOT EXISTS bots
   CONSTRAINT bots_pkey PRIMARY KEY (id),
   CONSTRAINT bots_state_check CHECK (state IN ('created', 'running', 'stopped', 'deleted')),
   CONSTRAINT bots_project_id_fkey FOREIGN KEY (project_id)
-    REFERENCES projects (id) ON DELETE CASCADE
+    REFERENCES projects (id) ON DELETE CASCADE,
+  CONSTRAINT bots_user_id_fkey FOREIGN KEY (user_id)
+    REFERENCES users (id) ON DELETE CASCADE
 );
 
 CREATE OR REPLACE RULE delete_bots_rule AS

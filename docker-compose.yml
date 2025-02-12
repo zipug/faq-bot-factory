@@ -24,7 +24,7 @@ services:
       co.elastic.logs/json.add_error_key: true
       co.elastic.logs/json.expand_keys: true
     volumes:
-      - ./dashboard-service/configs/config.toml:/app/configs/config.toml
+      - ./dashboard-service/configs/config.toml:/app/configs/config.toml:ro
       - ./dashboard-service/migrations:/app/migrations
     environment:
       CONFIG_PATH: ${CONFIG_PATH}
@@ -73,7 +73,7 @@ services:
     container_name: mail 
     build: ./mail-service
     volumes:
-      - ./mail-service/configs/config.toml:/app/configs/config.toml
+      - ./mail-service/configs/config.toml:/app/configs/config.toml:ro
       - ./mail-service/templates:/app/templates
     environment:
       CONFIG_PATH: ${CONFIG_PATH}
@@ -86,11 +86,51 @@ services:
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
     ports:
-      - "4400:4400"
+      - "4450:4450"
     restart: unless-stopped
     depends_on:
       - postgres
     network_mode: host
+
+  executor:
+    container_name: executor
+    build: ./docker-exec-service
+    volumes:
+      - ./docker-exec-service/configs/config.toml:/app/configs/config.toml:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      CONFIG_PATH: ${CONFIG_PATH}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB_NAME: ${POSTGRES_DB_NAME}
+      POSTGRES_SSL_MODE: ${POSTGRES_SSL_MODE}
+      POSTGRES_MIGRATIONS_PATH: ${POSTGRES_MIGRATIONS_PATH}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_DB: ${REDIS_DB}
+      REDIS_USER: ${REDIS_USER}
+      REDIS_USER_PASSWORD: ${REDIS_USER_PASSWORD}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      MINIO_HOST: ${MINIO_HOST}
+      MINIO_PORT: ${MINIO_PORT}
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+      MINIO_ARTICLES_BUCKET: ${MINIO_ARTICLES_BUCKET}
+      MINIO_ATTACHMENTS_BUCKET: ${MINIO_ATTACHMENTS_BUCKET}
+      MINIO_AVATARS_BUCKET: ${MINIO_AVATARS_BUCKET}
+      MINIO_USE_SSL: ${MINIO_USE_SSL}
+      MINIO_URL_LIFETIME: ${MINIO_URL_LIFETIME}
+      TELEGRAM_IMAGE_NAME: ${TELEGRAM_IMAGE_NAME}
+      TELEGRAM_TIMEOUT: ${TELEGRAM_TIMEOUT}
+    ports:
+      - "4460:4460"
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    network_mode: host
+
 
   postgres:
     image: postgres:17
