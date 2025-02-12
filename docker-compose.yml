@@ -131,7 +131,6 @@ services:
       - postgres
     network_mode: host
 
-
   postgres:
     image: postgres:17
     container_name: postgres 
