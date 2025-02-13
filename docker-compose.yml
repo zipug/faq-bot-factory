@@ -66,6 +66,7 @@ services:
     restart: unless-stopped
     depends_on:
       - postgres
+      - redis
     network_mode: host
 
   mail:
@@ -90,6 +91,7 @@ services:
     restart: unless-stopped
     depends_on:
       - postgres
+      - redis
     network_mode: host
 
   executor:
@@ -129,6 +131,28 @@ services:
     restart: unless-stopped
     depends_on:
       - postgres
+      - redis
+    network_mode: host
+
+  search:
+    container_name: search
+    build: ./search-service
+    environment:
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB_NAME: ${POSTGRES_DB_NAME}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_DB: ${REDIS_DB}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    ports:
+      - "5255:5255"
+    restart: unless-stopped
+    depends_on:
+      - postgres
+      - redis
     network_mode: host
 
   postgres:
@@ -151,7 +175,7 @@ services:
 
   redis:
     image: redis:latest
-    container_name: redis 
+    container_name: redis
     command: /bin/sh -c "redis-server --requirepass $$REDIS_PASSWORD"
     env_file:
       - .env
