@@ -16,3 +16,6 @@
 [submodule "report-service"]
 	path = report-service
 	url = git@github.com:zipug/report-service.git
+[submodule "telegram-bot"]
+	path = telegram-bot
+	url = git@github.com:zipug/telegram-bot.git
