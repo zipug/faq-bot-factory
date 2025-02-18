@@ -126,6 +126,7 @@ services:
       MINIO_URL_LIFETIME: ${MINIO_URL_LIFETIME}
       TELEGRAM_IMAGE_NAME: ${TELEGRAM_IMAGE_NAME}
       TELEGRAM_TIMEOUT: ${TELEGRAM_TIMEOUT}
+      SEARCH_URL: ${SEARCH_URL}
     ports:
       - "4460:4460"
     restart: unless-stopped

@@ -58,12 +58,7 @@ VALUES ('Test project', 'Test project description', 'test.ru', 3),
 ('Big Black bear', 'Black medved project', 'medved.com', 3);
 
 INSERT INTO articles (name, description, content, project_id)
-VALUES ('Test article', 'Test article description', '<html>
-  <head>
-    <title>Telegram</title>
-  </head>
-  <body>
-    <b>How to use list comprehension in Python</b>
+VALUES ('Test article', 'Test article description', '<b>How to use list comprehension in Python</b>
     <i>List comprehension in Python is a concise way to create lists. It allows you to generate a new list by applying an expression to each item in an existing iterable (like a <code>list</code>, <code>tuple</code>, or <code>range</code>).</i>
     <pre>
       <code class="language-python">
@@ -119,14 +114,12 @@ VALUES ('Test article', 'Test article description', '<html>
         print(doubled)
         # Output: [0, 2, 4, 6, 8]
       </code>
-    </pre>
-  </body>
-</html>', 1),
+    </pre>', 1),
 ('Big Black bear', 'Black medved article', 'Black medved article content', 2);
 
-INSERT INTO bots (project_id, name, description, state, user_id)
-VALUES (1, 'Test project bot', 'Test project description', 'created', 3),
-(2, 'Big Black bear', 'Black medved project', 'created', 3);
+INSERT INTO bots (project_id, name, description, state, user_id, api_token)
+VALUES (1, 'Test project bot', 'Test project description', 'created', 3, '7672631119:AAEqdcBCTP1FEtS96JrVd1FU-Zc1JC8NLjo'),
+(2, 'Big Black bear', 'Black medved project', 'created', 3, '7825041192:AAHhbiAv9Sove9-KpZApnLBtjLQUsrZ3E9c');
 
 INSERT INTO reports (name, description, icon)
 VALUES ('Общая статистика', 'Количество пользователей, заданные пользователями вопросы и их распределение по проектам', ''),
