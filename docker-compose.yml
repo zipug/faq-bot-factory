@@ -61,6 +61,7 @@ services:
       MINIO_USE_SSL: ${MINIO_USE_SSL}
       MINIO_URL_LIFETIME: ${MINIO_URL_LIFETIME}
       MAX_PARALLEL_WORKERS: ${MAX_PARALLEL_WORKERS}
+      FRONT_END_URL: ${FRONT_END_URL}
     ports:
       - "4400:4400"
     restart: unless-stopped
