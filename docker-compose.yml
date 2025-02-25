@@ -70,9 +70,19 @@ services:
       - redis
     network_mode: host
 
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    depends_on:
+      - server
+      - postgres
+
   mail:
     # image: mail-service:latest
-    container_name: mail 
+    container_name: mail
     build: ./mail-service
     volumes:
       - ./mail-service/configs/config.toml:/app/configs/config.toml:ro
@@ -162,7 +172,7 @@ services:
 
   postgres:
     image: postgres:17
-    container_name: postgres 
+    container_name: postgres
     environment:
       POSTGRES_DB: ${POSTGRES_DB_NAME}
       POSTGRES_USER: ${POSTGRES_USER}
@@ -189,10 +199,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 512M
         reservations:
-          cpus: '0.25'
+          cpus: "0.25"
           memory: 256M
     healthcheck:
       test: ["CMD-SHELL", "redis-cli", "-a", "$REDIS_PASSWORD", "ping"]
@@ -201,7 +211,7 @@ services:
       - redis_data:/bitnami/redis/data
 
   elasticsearch:
-    container_name: elastic 
+    container_name: elastic
     image: "docker.elastic.co/elasticsearch/elasticsearch:7.2.0"
     environment:
       - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
@@ -212,7 +222,7 @@ services:
       - elasticsearch_data:/usr/share/elasticsearch/data
 
   kibana:
-    container_name: kibana 
+    container_name: kibana
     image: "docker.elastic.co/kibana/kibana:7.2.0"
     ports:
       - "5601:5601"
