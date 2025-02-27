@@ -19,3 +19,6 @@
 [submodule "telegram-bot"]
 	path = telegram-bot
 	url = git@github.com:zipug/telegram-bot.git
+[submodule "protos"]
+	path = protos
+	url = git@github.com:zipug/protos.git
