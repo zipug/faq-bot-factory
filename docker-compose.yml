@@ -70,6 +70,19 @@ services:
       - redis
     network_mode: host
 
+  resources:
+    container_name: resources
+    build: ./resources
+    environment:
+      RESOURCES_HOST: ${RESOURCES_HOST}
+      RESOURCES_PORT: ${RESOURCES_PORT}
+      RESOURCES_UPTIME: ${RESOURCES_UPTIME}
+      RESOURCES_ALLOWED_ORIGINS: ${RESOURCES_ALLOWED_ORIGINS}
+    ports:
+      - "${RESOURCES_PORT:-30080}:${RESOURCES_PORT:-30080}"
+    restart: unless-stopped
+    network_mode: host
+
   frontend:
     container_name: frontend
     build: ./frontend

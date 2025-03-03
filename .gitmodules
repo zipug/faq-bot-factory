@@ -22,3 +22,6 @@
 [submodule "protos"]
 	path = protos
 	url = git@github.com:zipug/protos.git
+[submodule "resources"]
+	path = resources
+	url = git@github.com:zipug/resources.git

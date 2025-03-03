@@ -5,4 +5,5 @@ use (
 	./docker-exec-service
 	./mail-service
 	./telegram-bot
+	./resources
 )
