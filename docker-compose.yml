@@ -86,6 +86,9 @@ services:
   frontend:
     container_name: frontend
     build: ./frontend
+    environment:
+      VUE_APP_BASE_URL: ${BASE_URL}
+      VUE_APP_RESOURCES_WS_URL: ${RESOURCES_WS_URL}
     ports:
       - "8084:80"
     restart: unless-stopped

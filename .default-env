@@ -53,3 +53,5 @@ RESOURCES_PORT = 30080
 RESOURCES_UPTIME = "1s"
 RESOURCES_ALLOWED_ORIGINS = "https://diplom.psina.tech, http://localhost:8084"
 FRONT_END_URL = "http://localhost:8084"
+BASE_URL = "https://diplom.psina.tech/api/v1/"
+RESOURCES_WS_URL = "wss://diplom.psina.tech/ws/"
