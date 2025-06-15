@@ -15,7 +15,6 @@ x-minio-common: &minio-common
 
 services:
   server:
-    # image: faq-server:latest
     container_name: dashboard
     build: ./dashboard-service
     labels:
@@ -85,10 +84,11 @@ services:
 
   frontend:
     container_name: frontend
-    build: ./frontend
-    environment:
-      VUE_APP_BASE_URL: ${BASE_URL}
-      VUE_APP_RESOURCES_WS_URL: ${RESOURCES_WS_URL}
+    build:
+      context: ./frontend
+      args:
+        - VITE_APP_BASE_URL=${BASE_URL}
+        - VITE_RESOURCES_WS_URL=${RESOURCES_WS_URL}
     ports:
       - "8084:80"
     restart: unless-stopped
@@ -97,7 +97,6 @@ services:
       - postgres
 
   mail:
-    # image: mail-service:latest
     container_name: mail
     build: ./mail-service
     volumes:
@@ -283,7 +282,6 @@ services:
   nginx:
     image: nginx:latest
     container_name: nginx
-    hostname: nginx
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
@@ -294,6 +292,7 @@ services:
       - minio2
       - minio3
       - minio4
+    restart: always
 
 volumes:
   postgres_data:
